@@ -5,7 +5,6 @@
 }
 
 body {
-    background-image: url("./pict.jpg") ;
     background-size: cover;
     background-position: center center;
     display: flex;
@@ -14,7 +13,7 @@ body {
     justify-content: center;
     min-height: 100vh;
     font-family: "Poppins", sans-serif;
-    color: aliceblue;
+    color: black;
     margin: 0 auto;
 }
 
@@ -29,7 +28,7 @@ h1 {
 
 .big-text {
     font-weight: bold;
-    font-size: 5rem;
+    font-size: 2rem;
     line-height: 1;
     margin: 0 2rem;
 }
@@ -40,6 +39,7 @@ h1 {
 }
 
 .countdown-el span {
+    text-align: center;
     font-size: 1.5rem;
     margin-right: 40px;
     margin-left: 40px;
