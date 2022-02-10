@@ -14,7 +14,7 @@ body {
     min-height: 100vh;
     font-family: "Poppins", sans-serif;
     color: black;
-    margin: 0 auto;
+    margin: auto;
 }
 
 h1 {
@@ -28,9 +28,9 @@ h1 {
 
 .big-text {
     font-weight: bold;
-    font-size: 2rem;
+    font-size: 1rem;
     line-height: 1;
-    margin: 0 2rem;
+    margin: auto;
 }
 
 .countdown-el {
@@ -39,8 +39,7 @@ h1 {
 }
 
 .countdown-el span {
-    text-align: center;
-    font-size: 1.5rem;
-    margin-right: 40px;
-    margin-left: 40px;
+    font-size: 0.5rem;
+    margin-right: 20px;
+    margin-left: 20px;
 }
