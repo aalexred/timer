@@ -1,27 +1,27 @@
-const daysE1 = document.getElementById('days')
-const hoursE1 = document.getElementById('hours')
-const minsE1 = document.getElementById('mins')
-const secondsE1 = document.getElementById('seconds')
+// Set the date and time to count down to
+const countdownDate = new Date('October 27, 2023 00:00:00').getTime();
 
+// Update the countdown every second
+const countdownTimer = setInterval(() => {
 
-const newYears = '27 Oct 2022';
+  // Get the current date and time
+  const now = new Date().getTime();
 
-function countdown() {
-    const newYearsDate = new Date(newYears);
-    const currentDate = new Date();
+  // Calculate the time remaining
+  const timeRemaining = countdownDate - now;
 
-    const totallSeconds = (newYearsDate - currentDate) / 1000;
-    const days = Math.floor(totallSeconds / 3600 / 24);
-    const hours = Math.floor(totallSeconds / 3600) % 24;
-    const mins = Math.floor(totallSeconds / 60) % 60;
-    const seconds = Math.floor(totallSeconds % 60);
+  // Calculate the days, hours, minutes, and seconds remaining
+  const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
-    daysE1.innerHTML = days;
-    hoursE1.innerHTML = hours;
-    minsE1.innerHTML = mins;
-    secondsE1.innerHTML = seconds;
+  // Display the countdown in the console
+  console.log(`${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`);
 
-}
-countdown();
-
-setInterval(countdown, 1000)
+  // If the countdown is finished, display a message and clear the timer
+  if (timeRemaining < 0) {
+    clearInterval(countdownTimer);
+    console.log('Countdown finished!');
+  }
+}, 1000);
