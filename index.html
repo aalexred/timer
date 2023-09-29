@@ -1,41 +1,78 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Countdown Timer</title>
-  </head>
-  <body>
-    <h1>Countdown Timer</h1>
-    <p id="countdown"></p>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор пакетиков</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        label, input, button {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Калькулятор пакетиков</h1>
+
+    <label for="packetsPerPackage">Количество пакетиков в пакете:</label>
+    <input type="number" id="packetsPerPackage" placeholder="Введите количество пакетиков в пакете">
+
+    <label for="totalWeight">Вес полного пакета (в граммах):</label>
+    <input type="number" id="totalWeight" placeholder="Введите вес полного пакета">
+
+    <label for="partialWeight">Вес неполного пакета (в граммах):</label>
+    <input type="number" id="partialWeight" placeholder="Введите вес неполного пакета">
+
+    <button onclick="calculate()">Рассчитать</button>
+
+    <p>Результат:</p>
+    <p>Пакетиков в неполном пакете: <span id="packetsInPartialPackage"></span></p>
+    <p>Недостающих пакетиков до полного пакета: <span id="missingPackets"></span></p>
 
     <script>
-      // Set the date and time to count down to
-      const countdownDate = new Date('October 27, 2023 00:00:00').getTime();
+        function calculate() {
+            // Получаем значение из первого поля (количество пакетиков в пакете)
+            const packetsPerPackage = parseFloat(document.getElementById("packetsPerPackage").value);
 
-      // Update the countdown every second
-      const countdownTimer = setInterval(() => {
+            // Получаем значение из второго поля (вес полного пакета в граммах)
+            const totalWeight = parseFloat(document.getElementById("totalWeight").value);
 
-        // Get the current date and time
-        const now = new Date().getTime();
+            // Получаем значение из третьего поля (вес неполного пакета в граммах)
+            const partialWeight = parseFloat(document.getElementById("partialWeight").value);
 
-        // Calculate the time remaining
-        const timeRemaining = countdownDate - now;
+            // Вычисляем количество пакетиков в неполном пакете
+            const packetsInPartialPackage = (partialWeight / totalWeight) * packetsPerPackage;
 
-        // Calculate the days, hours, minutes, and seconds remaining
-        const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+            // Вычисляем количество недостающих пакетиков до полного пакета
+            const missingPackets = Math.ceil(packetsPerPackage - packetsInPartialPackage);
 
-        // Display the countdown on the page
-        const countdownElement = document.getElementById('countdown');
-        countdownElement.innerHTML = `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
-
-        // If the countdown is finished, display a message and clear the timer
-        if (timeRemaining < 0) {
-          clearInterval(countdownTimer);
-          countdownElement.innerHTML = 'Countdown finished!';
+            // Выводим результат на страницу
+            document.getElementById("packetsInPartialPackage").textContent = packetsInPartialPackage.toFixed(2);
+            document.getElementById("missingPackets").textContent = missingPackets;
         }
-      }, 1000);
     </script>
-  </body>
+</body>
 </html>
